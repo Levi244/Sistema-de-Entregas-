@@ -1,12 +1,13 @@
 <?php
-$host = "***";
-$usuario = "****";
+$host = "*";
+$usuario = "*";
 $senha = "*";
-$banco = "****";
+$banco = "*";
 
-$conexao = new mysqli($host, $usuario, $senha, $banco);
+$conn = new mysqli($host, $usuario, $senha, $banco);
 
-if ($conexao->connect_error) {
-    die("Erro: " . $conexao->connect_error);
+if ($conn->connect_error) {
+    die("ERRO: " . $conn->connect_error);
 }
+
 ?>

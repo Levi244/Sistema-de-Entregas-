@@ -2,9 +2,18 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-include("conexao.php");
-
 $erro = "";
+
+$host = "localhost";
+$usuario = "u199367788_wP0dbY75a_levidb244";
+$senha = "Fuvete*01";
+$banco = "u199367788_wP0dbY75a_levidb";
+
+$conn = new mysqli($host, $usuario, $senha, $banco);
+
+if ($conn->connect_error) {
+    die("ERRO: " . $conn->connect_error);
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -16,14 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $atualizado_por = "sistema";
     $atualizado_em = date("Y-m-d");
 
-    $stmt = $conexao->prepare("
+    $stmt = $conn->prepare("
         INSERT INTO cadastro.tbPessoas
         (nome, cpf, nascimento, telefone, pessoa_tipo_id, atualizado_por, atualizado_em)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
 
     if (!$stmt) {
-        die("Erro no prepare: " . $conexao->error);
+        die("Erro no prepare: " . $conn->error);
     }
 
     $stmt->bind_param(
